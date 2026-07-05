@@ -1,0 +1,55 @@
+% =====================================================================
+%  Domain-Complete Intelligence  --  two-column arXiv-style position note
+%
+%  BUILD:   make          (or: latexmk -pdf main.tex)
+%  CLEAN:   make clean
+%
+%  This is a DRIVER file. It contains no prose. To contribute, edit the
+%  section files in  sections/  and the bibliography in  references.bib.
+%  Style lives in  preamble.tex ; title/authors in  metadata.tex .
+% =====================================================================
+\documentclass[twocolumn,10pt]{article}
+% arXiv: force the pdflatex route (recommended when using pdflatex + TikZ figures)
+\pdfoutput=1
+
+\input{preamble}
+\input{metadata}
+
+% ---- title block ---------------------------------------------------
+\title{\vspace{-3.2em}\bfseries \PaperTitle\\[4pt]
+       \normalsize\normalfont\itshape \PaperSubtitle}
+\author{\AuthorBlock}
+% For an internal draft, swap the next line for:
+%   \date{\small\today\ \textperiodcentered\ Draft --- not for distribution}
+\date{\today}
+
+\begin{document}
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    \begin{abstract}
+      \input{sections/00-abstract}
+    \end{abstract}
+    \vspace{0.4em}
+    {\small\noindent\textbf{Keywords:} \PaperKeywords\par}
+    {\small\noindent\textbf{ACM classes:} I.2.0 (Artificial Intelligence, General); I.2.6 (Learning).\par}
+    \vspace{1.0em}
+  \end{@twocolumnfalse}
+]
+
+\input{sections/01-gap}
+\input{sections/02-definition}
+\input{sections/03-verifier}
+\input{sections/04-cross-generality}
+\input{sections/05-positioning}
+\input{sections/06-lineage}
+\input{sections/06b-related-work}
+\input{sections/06c-scope}
+\input{sections/07-testable}
+\input{sections/08-claim}
+
+% ---- bibliography --------------------------------------------------
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,45 @@
+\section{The cross-generality objection --- and why $\Prin$ answers it}
+\label{sec:cross}
+
+\textbf{Objection.} Some skills \emph{within} a domain --- experiment design, tool orchestration, recognizing when the data violate the domain's rules --- appear to require cross-domain generality. If so, \DCI\ is not a clean stepping stone but a partial one.
+
+\textbf{Resolution.} The objection conflates two axes that a vertically organizing principle separates. Verticality answers each on different grounds.
+
+\emph{Epistemic axis (cross-scale transfer and violation detection).} Because $\Prin$ is the scale-invariant of $\Dom$, a rule-violation \emph{is} a measurable departure from $\Prin$: an invariant is, by construction, the object whose violation is diagnostic. No external reasoner is required to flag it. Likewise, transfer across scales is not bolted on --- it is constitutive of holding $\Prin$ at all, since $\Prin$ has the same form at every level. The effective scope of a $\Prin$-grounded \DCI\ is thus the \emph{entire vertical hierarchy} $\Dom$ spans, not a thin slice of it. Most of the ``isn't this just narrow AI'' reflex dissolves here.
+
+\emph{Pragmatic/meta axis (search, experiment design, orchestration).} These are not cross-scale but meta-level, and scale-invariance alone does not cover them. They are covered by a further, substantive property: \textbf{$\Prin$ is reflexive across the object/meta boundary} --- it governs not only the dynamics of $\Dom$ but the dynamics of \emph{discovery over} $\Dom$. If skill acquisition is itself an action-minimizing trajectory, then experiment design is ``select the path through hypothesis space that minimizes network-weighted action,'' an instance of $\Prin$ at the meta-level rather than a separate faculty demanding external generality.
+
+This reflexivity is not asserted; it is demonstrated, and along two independent routes (Figure~\ref{fig:reflexivity}) --- with the neural-architecture paper \citep{frasch2026c} supplying the engineering proof of the first and the formal basis of the second.
+
+\emph{Instance 1 --- reflexivity through search.} The \textbf{Emin/Imax} formalism maps \NWAP\ onto neural architecture design: an energy-first objective (the action functional) evaluated across \textbf{2{,}203 experiments} spanning vision, text, neuromorphic, and physiological data, with $10$ seeds per configuration and a factorial analysis \citep{frasch2026c}. The \emph{same} principle that describes an object system also governs the \emph{search} for architectures that model it --- a strong architecture$\times$dataset interaction ($\etap = 0.44$) shows the objective selecting task-appropriate structure rather than a fixed winner. Here the meta-level is design over model space, and $\Prin$ governs it.
+
+\emph{Instance 2 --- reflexivity through inference.} \citet{frasch2026c} also places \NWAP\ in the same variational equivalence class as the free-energy principle and the evidence lower bound (ELBO) of Bayesian inference --- three trade-off-based objectives that balance a data-fit term against a coupling/complexity cost. The paper is careful here, and so is this argument: \NWAP\ is \emph{not} a probabilistic ELBO, but a member of the same equivalence class of variational principles. That class-membership is what matters. The ELBO and the free-energy principle are not object-level descriptions; they \emph{are} the operations by which a system infers a generative model of its data. If $\Prin$ shares their variational form, then model-discovery over the domain is governed by an objective of the \emph{same class} as $\Prin$ --- structural kinship at the object/meta boundary, not a loose metaphor and not a claim of literal identity. And this is not only formal: the same action-functional constraint has been validated at biology scale, predicting the emergent modular organization of real marine metabolic networks, with a modularity excess of $\dQ \approx 0.15$--$0.40$ over configuration-model, label-permutation, and bipartite-incidence null models \citep{frasch2026d}. So reflexivity is witnessed both in \emph{search} (in silico, NAS) and in \emph{inference} (empirically, on real data) --- two different meta-level operations, two different evidentiary bases, with \citeyear{frasch2026c} as the shared formal spine.
+
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[font=\small,>={Latex[length=2.4mm]},
+  box/.style={draw,rounded corners,align=center,inner sep=5pt,minimum height=11mm},
+  lvl/.style={box,fill=NavyBlue!7,text width=4.5cm},
+  ver/.style={box,fill=gray!12,text width=3.5cm},
+  prin/.style={draw,circle,fill=orange!22,inner sep=2pt,minimum size=12mm,font=\normalsize}]
+\node[prin] (pi) {$\Prin$};
+\node[lvl,above right=4mm and 22mm of pi] (obj) {\textbf{Object level}\\ domain $\Dom$: dynamics extremize $\Prin$};
+\node[lvl,below right=4mm and 22mm of pi] (meta) {\textbf{Meta level}: discovery over $\Dom$\\ search $+$ inference; objective $\in$ class$(\Prin)$};
+\node[ver,right=24mm of meta] (ver) {\textbf{Verifier} $\Rule$\\ nomological machine};
+% reflexivity: one principle governs both levels
+\draw[->] (pi.north) to[out=90,in=180] node[above,font=\footnotesize]{describes dynamics} (obj.west);
+\draw[->] (pi.south) to[out=-90,in=180] node[below,font=\footnotesize]{governs discovery} (meta.west);
+% reflexive object/meta coupling
+\draw[->] (meta.north) -- node[right,font=\footnotesize]{proposes law/model} (obj.south);
+% closed discovery loop against the verifier
+\draw[->] (meta.east) -- node[above,font=\footnotesize]{candidate} (ver.west);
+\draw[->] (ver.south) to[out=-90,in=-90] node[below,font=\footnotesize]{adjudicates} (meta.south);
+\draw[->,dashed] (obj.east) to[out=0,in=90] node[above right,font=\footnotesize]{ground truth} (ver.north);
+\end{tikzpicture}
+\caption{The object/meta reflexivity loop. A single vertically organizing principle $\Prin$ both \emph{describes} the object-level dynamics of $\Dom$ and \emph{governs} the meta-level discovery over $\Dom$ --- the reflexivity that answers the cross-generality objection. Discovery is witnessed along two routes: Instance~1, search (energy-first NAS, \citealp{frasch2026c}), and Instance~2, inference (\NWAP\ in the free-energy/ELBO variational class, \citealp{frasch2026c}, validated on real data in \citealp{frasch2026d}). The executable verifier $\Rule$ --- a nomological machine (\S\ref{sec:lineage}) --- closes the loop by adjudicating candidates against ground truth, covering any residual the principle does not.}
+\label{fig:reflexivity}
+\end{figure*}
+
+\textbf{Composition with the verifier.} Where even these leave residue --- messier real-world meta-skills such as physical experiment orchestration --- the verifier composes with $\Prin$: the executable substrate $\Rule$ substitutes for meta-judgment in exactly the cases where $\Prin$'s meta-coverage is thinnest. Reflexivity of $\Prin$ (search \emph{and} inference) \emph{plus} the verifier substrate together close the loop --- a more robust guarantee than any one of them alone.
+
+The correct statement of the claim is therefore precise, not hand-waving: \emph{a vertically organizing principle addresses the cross-generality concern because it is reflexive across the object/meta boundary; the NAS \citep{frasch2026c} and biology-scale validation \citep{frasch2026d} results are independent evidence that it is; and the verifier substrate covers the residual.}

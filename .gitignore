@@ -1,0 +1,13 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+sections/*.aux
+
+# main.pdf is tracked so collaborators can read the rendered manuscript without building.

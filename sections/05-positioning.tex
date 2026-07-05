@@ -1,0 +1,55 @@
+\section{Positioning: Kepler before Newton}
+\label{sec:positioning}
+
+\DCI\ is the \textbf{Keplerian} rung. Kepler mapped mathematical form onto raw observational data to extract laws --- within one domain, with world-historical consequences --- decades before Newton unified the picture. Humanity did not wait for the general theory to reap the value; the domain-complete discovery came first and carried most of the near-term payoff. The analogy is now literal rather than illustrative: a Minimum-Action Learning system recovers the inverse-square gravitational law (and Hooke's) from noisy orbital data and reproduces Kepler's third-law exponent, $p = 3.01 \pm 0.01$, at roughly $40\%$ lower training energy than prediction-error-only baselines \citep{frasch2026b}. We are proposing to build, deliberately, the class of agent that already recovered the Keplerian law from raw data.
+
+Relative to ARC-AGI-3, \DCI\ sits at \textbf{Level 2.5 / Level 3a}: domain-complete agentic intelligence first, open-world agentic intelligence second.
+
+\subsection{Relation to the DeepMind ``Levels of AGI'' taxonomy}
+\label{sec:morris}
+
+\citet{morris2024} classify systems on two axes --- \emph{performance} (depth) and \emph{generality} (breadth) --- yielding the matrix in Table~\ref{tab:morris} (representative systems paraphrased from their examples).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{The DeepMind performance$\times$generality matrix \citep{morris2024}, with representative systems. The matrix has no axis for \emph{autonomy of skill acquisition}; that is the dimension \DCI\ adds.}
+\label{tab:morris}
+\begin{tabular}{@{}L{4.4cm}L{6.0cm}L{5.6cm}@{}}
+\toprule
+\textbf{Performance $\downarrow$ / Generality $\rightarrow$} & \textbf{Narrow} (task- or domain-specific) & \textbf{General} (wide range of tasks) \\
+\midrule
+Level 0 --- No AI & calculator; compiler & human-in-the-loop only \\
+Level 1 --- Emerging ($\approx$ unskilled human) & simple rule-based systems (classic GOFAI) & frontier chat assistants (early LLMs) \\
+Level 2 --- Competent ($\geq$ 50th pct.\ skilled adults) & voice assistants; toxicity classifiers & \emph{not yet achieved} \\
+Level 3 --- Expert ($\geq$ 90th pct.) & grammar tools; text-to-image generators & \emph{not yet achieved} \\
+Level 4 --- Virtuoso ($\geq$ 99th pct.) & Deep Blue; AlphaGo & \emph{not yet achieved} \\
+Level 5 --- Superhuman ($>$ 100\% of humans) & AlphaFold; AlphaZero; Stockfish & \emph{not yet achieved (ASI)} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The reflexive objection to this paper is: \emph{``\DCI\ is just the bottom-left cell --- Superhuman Narrow.''} It is not, and the reason is that this matrix has no axis for \textbf{autonomy of skill acquisition}. Performance measures \emph{how well} a fixed skill is executed; generality measures \emph{how many} task-types are covered. Neither asks whether the system \emph{acquires new skill or discovers new law within its domain on its own}. That question is orthogonal to both, and it is the one that matters for scientific value.
+
+Collapsing that missing axis is exactly what makes ``Superhuman Narrow'' misleading. It houses two categorically different kinds of system (Table~\ref{tab:split}).
+
+\begin{table*}[t]
+\centering
+\small
+\caption{``Superhuman Narrow'' fuses two categorically different kinds of system. \DCI\ is the discovery-capable one, and it is defined by a compressed prior plus an executable verifier rather than by a learned policy.}
+\label{tab:split}
+\begin{tabular}{@{}L{3.6cm}L{4.6cm}L{7.6cm}@{}}
+\toprule
+\textbf{Within ``Superhuman Narrow''} & \textbf{Fixed-skill executor} & \textbf{Domain-Complete (\DCI)} \\
+\midrule
+Example & Stockfish, AlphaZero & AlphaFold-in-a-discovery-loop; AlphaGeometry; FunSearch; the \NWAP\ law-discovery system \citep{frasch2026b} \\
+Skill set & fixed at training; superhuman on \emph{one} objective & open-ended \emph{within} the domain's rule system \\
+Novelty & executes; does not discover & proposes, falsifies, and reaches un-enumerated results \\
+What supplies competence & learned policy & compressed prior $\Prin$ \textbf{+} executable verifier $\Rule$ \\
+Failure mode & brittle off-distribution & flags rule-violation as departure from $\Prin$ \\
+Empirical anchor (this program) & --- (executes a fixed objective) & law recovered from noisy data, Kepler exponent $p = 3.01 \pm 0.01$ at ${\sim}40\%$ less training energy \citep{frasch2026b}; energy-first design validated across \textbf{2{,}203} experiments, architecture$\times$dataset $\etap = 0.44$ vs.\ architecture-alone $\etap = 0.001$ \citep{frasch2026c} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\DCI\ is therefore \textbf{not a cell but a third axis} --- autonomous discovery --- applied to the deep, narrow, \emph{vertically organized} column. The claim of this paper is that the productive next move is not rightward (toward General, which remains empty at every level above Emerging) but \emph{along this third axis}: promoting narrow-but-deep systems from fixed-skill executors to domain-complete discoverers. And the route runs through explicit, verifiable rule substrates --- through compression via $\Prin$ --- rather than through scale.

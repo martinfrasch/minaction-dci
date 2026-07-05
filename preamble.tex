@@ -1,0 +1,56 @@
+% =====================================================================
+%  preamble.tex  --  shared style for the DCI position note
+%  Edit style HERE (once), not inside section files.
+% =====================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.75in,columnsep=0.28in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{times}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\usepackage[colorlinks=true,allcolors=black,citecolor=NavyBlue,urlcolor=NavyBlue,linkcolor=NavyBlue]{hyperref}
+
+% ---- named colours -------------------------------------------------
+\definecolor{NavyBlue}{RGB}{0,64,128}
+\definecolor{RuleGrey}{RGB}{90,90,90}
+
+% ---- section heading style (compact, arXiv-ish) --------------------
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing{\section}{0pt}{1.2ex plus 0.4ex minus 0.2ex}{0.6ex plus 0.2ex}
+\titlespacing{\subsection}{0pt}{1.0ex plus 0.3ex minus 0.2ex}{0.5ex plus 0.2ex}
+
+% ---- caption style -------------------------------------------------
+\captionsetup{font=small,labelfont=bf,labelsep=period,skip=4pt}
+
+% ---- table helpers -------------------------------------------------
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+% ---- semantic macros (keep notation consistent across contributors)
+\newcommand{\DCI}{\mbox{DCI}}
+\newcommand{\NWAP}{\mbox{NWAP}}
+\newcommand{\Dom}{\mathcal{D}}          % the domain
+\newcommand{\Rule}{\mathcal{R}}         % the executable rule substrate / verifier
+\newcommand{\Prin}{\Pi}                 % the vertically organizing principle
+\newcommand{\Snw}{S_{\mathrm{NW}}}      % network-weighted action
+\newcommand{\etap}{\eta^{2}_{p}}        % partial eta-squared
+\newcommand{\dQ}{\Delta Q}
+\newcommand{\arxivid}[1]{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+
+% ---- tighten lists a touch -----------------------------------------
+\usepackage{enumitem}
+\setlist{leftmargin=1.4em,itemsep=0.2ex,topsep=0.4ex}
+
+% ---- misc ----------------------------------------------------------
+\setlength{\parskip}{0.2ex}
+\frenchspacing
