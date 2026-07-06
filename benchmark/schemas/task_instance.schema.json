@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://minaction.net/arc-agi-2p5/schemas/task_instance.schema.json",
+  "title": "TaskInstance",
+  "description": "A single ARC-AGI-2.5 task presented to an agent.",
+  "type": "object",
+  "required": ["task_id", "family", "level", "domain", "observation", "budget", "prior", "answer_schema", "grammar_id", "verifier"],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^[A-F]-L[1-4]-[0-9]{6}$",
+      "description": "Family-Level-Index, e.g. A-L1-000473."
+    },
+    "family": { "enum": ["A", "B", "C", "D", "E", "F"] },
+    "level": { "type": "integer", "minimum": 1, "maximum": 4 },
+    "domain": { "type": "string", "description": "e.g. newtonian_dynamics, fetal_autonomic." },
+    "observation": {
+      "type": "object",
+      "description": "Family-specific. A: {series, snr, units}. B: {signals, ...}. Must NOT leak the held-out H value.",
+      "minProperties": 1
+    },
+    "budget": {
+      "type": "object",
+      "required": ["unit", "E_max"],
+      "additionalProperties": false,
+      "properties": {
+        "unit": { "enum": ["integrations", "experiments", "kWh"] },
+        "E_max": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "prior": {
+      "type": "object",
+      "required": ["pi", "provided"],
+      "additionalProperties": false,
+      "properties": {
+        "pi": { "type": ["string", "null"], "description": "Prior id, e.g. action_noether; null if none." },
+        "provided": { "type": "boolean", "description": "Whether Pi is given as an objective (vs. must be inferred)." },
+        "misspecified": { "type": "boolean", "description": "F1b only: Pi is deliberately wrong." },
+        "fit_quality": { "type": "number", "minimum": 0, "maximum": 1, "description": "F only: how well Pi matches the true generative structure." }
+      }
+    },
+    "answer_schema": { "enum": ["symbolic_law_sexpr", "coupling_graph_json"] },
+    "grammar_id": { "type": "string", "description": "Declares the reachable answer set (the in-scope guarantee)." },
+    "verifier": { "type": "string", "format": "uri", "description": "Handle for R.query, e.g. rho://A/000473." },
+    "condition": { "enum": ["full", "pi_off", "R_off", "baseline", "shuffled_invariant"] },
+    "seed": { "type": "integer", "description": "Reproducibility seed for the generator." }
+  }
+}

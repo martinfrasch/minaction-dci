@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://minaction.net/arc-agi-2p5/schemas/verifier_query.schema.json",
+  "title": "VerifierQuery",
+  "description": "In-loop verifier R: request and response. R returns a fidelity SIGNAL, never the held-out H value.",
+  "type": "object",
+  "required": ["request", "response"],
+  "$defs": {
+    "VerifierRequest": {
+      "type": "object",
+      "required": ["task_id", "proposal"],
+      "additionalProperties": false,
+      "properties": {
+        "task_id": { "type": "string", "pattern": "^[A-F]-L[1-4]-[0-9]{6}$" },
+        "proposal": {
+          "description": "A candidate answer OR an experiment. Shape depends on answer_schema / family.",
+          "oneOf": [
+            {
+              "type": "object",
+              "title": "SymbolicLawProposal",
+              "required": ["kind", "sexpr"],
+              "additionalProperties": false,
+              "properties": {
+                "kind": { "const": "answer" },
+                "sexpr": { "type": "string", "description": "S-expression over grammar_id." },
+                "params": { "type": "object", "description": "Optional fixed parameter values; else R fits them." }
+              }
+            },
+            {
+              "type": "object",
+              "title": "CouplingGraphProposal",
+              "required": ["kind", "graph"],
+              "additionalProperties": false,
+              "properties": {
+                "kind": { "const": "answer" },
+                "graph": { "$ref": "#/$defs/CouplingGraph" }
+              }
+            },
+            {
+              "type": "object",
+              "title": "ExperimentProposal",
+              "required": ["kind", "perturbation"],
+              "additionalProperties": false,
+              "properties": {
+                "kind": { "const": "experiment" },
+                "perturbation": { "type": "object", "description": "A perturbation from the declared library (Family B)." }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "VerifierResponse": {
+      "type": "object",
+      "required": ["signal", "cost", "budget_remaining", "valid"],
+      "additionalProperties": false,
+      "properties": {
+        "signal": {
+          "description": "Family-specific fidelity signal (e.g. short-horizon RMSE, or simulated summary stats). NEVER the held-out score.",
+          "type": ["number", "object"]
+        },
+        "cost": { "type": "number", "minimum": 0, "description": "E units consumed by this query." },
+        "budget_remaining": { "type": "number", "minimum": 0 },
+        "valid": { "type": "boolean", "description": "Proposal well-formed under grammar_id." },
+        "noise_applied": { "type": "number", "description": "F2/F3 only: magnitude of R degradation on this call." }
+      }
+    },
+    "CouplingGraph": {
+      "type": "object",
+      "required": ["nodes", "edges"],
+      "additionalProperties": false,
+      "properties": {
+        "nodes": { "type": "array", "items": { "type": "string" }, "description": "Named signals/organs." },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["src", "dst"],
+            "additionalProperties": false,
+            "properties": {
+              "src": { "type": "string" },
+              "dst": { "type": "string" },
+              "gain": { "type": "number" },
+              "delay": { "type": "number", "minimum": 0 },
+              "sign": { "enum": ["+", "-"] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "request": { "$ref": "#/$defs/VerifierRequest" },
+    "response": { "$ref": "#/$defs/VerifierResponse" }
+  }
+}
