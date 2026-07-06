@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://minaction.net/arc-agi-2p5/schemas/score_report.schema.json",
+  "title": "ScoreReport",
+  "description": "Output of the held-out criterion H. The ablation CONDITION is required so full/pi_off/etc. are never conflated.",
+  "type": "object",
+  "required": ["task_id", "condition", "success", "gaming_flag", "GD", "P_bits", "E_used", "E_norm", "efficiency"],
+  "additionalProperties": false,
+  "properties": {
+    "task_id": { "type": "string", "pattern": "^[A-F]-L[1-4]-[0-9]{6}$" },
+    "condition": { "enum": ["full", "pi_off", "R_off", "baseline", "shuffled_invariant"] },
+    "success": { "type": "number", "minimum": 0, "maximum": 1, "description": "1 iff answer passes H and gaming_flag is false; graded partial credit allowed." },
+    "gaming_flag": { "type": "boolean", "description": "True if the answer passed R's signal but failed the held-out H." },
+    "held_out_value": { "type": "number", "description": "The raw H measurement (e.g. long-horizon energy drift, counterfactual error)." },
+    "GD": { "type": "number", "exclusiveMinimum": 0, "description": "Generalization-difficulty weight (level-indexed or description-length)." },
+    "P_bits": { "type": "number", "minimum": 0, "description": "Description length of the injected prior; 0 for pi_off/baseline." },
+    "E_used": { "type": "number", "minimum": 0, "description": "Experience spent against R, in the task's budget unit." },
+    "E_norm": { "type": "number", "exclusiveMinimum": 0, "maximum": 1, "description": "E_used / E_max." },
+    "efficiency": { "type": "number", "minimum": 0, "description": "success * GD / (w_P * P_hat + w_E * E_norm)." },
+    "prior_rejected": { "type": "boolean", "description": "F1b: agent flagged/declined a mis-specified Pi." },
+    "overconfident_wrong": { "type": "boolean", "description": "success==0 with high confidence; the worse failure mode." },
+    "notes": { "type": "string" }
+  }
+}
