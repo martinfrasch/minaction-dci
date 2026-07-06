@@ -11,3 +11,7 @@
 sections/*.aux
 
 # main.pdf is tracked so collaborators can read the rendered manuscript without building.
+
+# Python bytecode / caches
+__pycache__/
+*.pyc
