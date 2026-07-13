@@ -26,13 +26,14 @@ Domain-Complete Intelligence: The Missing Rung Between Reasoning and Universal A
 ## Authors
 
 ```
-Martin G. Frasch
+Martin G. Frasch (Health Stream Analytics, LLC; University of Washington, IHDD; Task Force for AI Agents in Healthcare)
+Jim Schwoebel (Task Force for AI Agents in Healthcare; Quome Inc.)
 ```
 
 ## Comments field
 
 ```
-6 pages, 1 figure, 2 tables. Position paper. Grounds the proposal in the minAction.net / Network-Weighted Action Principle program (arXiv:2603.16951, 2604.24805, 2605.05254; J Physiol 604:4631-4639).
+7 pages, 1 figure, 2 tables. Position paper. Grounds the proposal in the minAction.net / Network-Weighted Action Principle program (arXiv:2603.16951, 2604.24805, 2605.05254; J Physiol 604:4631-4639).
 ```
 
 ## Abstract (plain text — paste into the abstract box)
