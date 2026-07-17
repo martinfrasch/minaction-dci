@@ -4,6 +4,12 @@ Two-column, arXiv-style position note proposing **Domain-Complete Intelligence (
 as the missing rung between fluid reasoning (ARC-AGI Level 2) and universal agentic AGI,
 grounded in the minAction.net / Network-Weighted Action Principle (NWAP) program.
 
+## Citation
+
+Archived on Zenodo: [https://doi.org/10.5281/zenodo.21364866](https://doi.org/10.5281/zenodo.21364866)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21364866.svg)](https://doi.org/10.5281/zenodo.21364866)
+
 ## Submitting to arXiv
 
 Target category: **cs.AI** (cross-list cs.LG). See **`ARXIV.md`** for the exact
